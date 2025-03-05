@@ -1,4 +1,3 @@
-import { cn } from "@/lib/utils"
 import {
   Card,
   CardContent,
@@ -7,6 +6,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+import { decode } from 'html-entities'
+import Image from "next/image"
 
 async function getCourses() {
   const fetchConfig = {
@@ -27,34 +28,37 @@ async function getCourses() {
   return json
 }
 
+
 export function CourseCard(course){
+
   return (
-    <Card className="w-[350px]" key={course.id}>
+    <div>
+    <Card className="w-[350px] transition-all duration-700 hover:scale-110" key={course.course.id}>
       <CardHeader>
-        <CardTitle>{course.name}</CardTitle>
-        <CardDescription>{course.description}</CardDescription>
+        <CardTitle>{decode(course.course.name)}</CardTitle>
+        <CardDescription>{decode(course.course.heading)}</CardDescription>
       </CardHeader>
       <CardContent>
-        
+        <Image src={course.course.image_url} width={500} height={500} className="w-full h-64 object-cover"/>
+      {decode(course.course.description)}
       </CardContent>
       <CardFooter className="flex justify-between">
       </CardFooter>
     </Card>
+    </div>
   )
 }
 
 
 export default async function PublishedCourses() {
   let courses_from_api = await getCourses()
-  // console.log(courses_from_api)
 
   return (
     <div>
       <h1>All Published Courses</h1>
-      <div>
+      <div className="flex items-center justify-evenly flex-col xl:flex-row min-h-screen">
         {courses_from_api?.courses?.map((course) => 
         {if(course.is_published){
-          console.log(course)
           return <CourseCard course={course} />
         }})}
       </div>
