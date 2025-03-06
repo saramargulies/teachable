@@ -14,11 +14,6 @@ import {
 // Menu items.
 const items = [
   {
-    title: "Home",
-    url: "/",
-    icon: Home,
-  },
-  {
     title: "Published Courses",
     url: "/published-courses",
     icon: BookOpenCheck,
@@ -26,8 +21,9 @@ const items = [
 
 ]
 
-export function AppSidebar() {
+export function Nav() {
   return (
+    <nav>
     <Sidebar>
       <SidebarContent>
         <SidebarGroup>
@@ -49,5 +45,6 @@ export function AppSidebar() {
         </SidebarGroup>
       </SidebarContent>
     </Sidebar>
+    </nav>
   )
 }

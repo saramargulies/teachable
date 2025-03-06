@@ -1,7 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { AppSidebar } from "@/components/Nav";
+import { Nav } from "@/components/custom/Nav";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,7 +15,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
         <body className={`${inter.className} flex`}>
         <SidebarProvider>
-        <AppSidebar />
+        <Nav />
           <SidebarTrigger />
           <div className="flex-1">{children}</div>
     </SidebarProvider>

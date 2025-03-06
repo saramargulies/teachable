@@ -3,6 +3,7 @@
  * https://jestjs.io/docs/configuration
  */
 
+const nextJest = require('next/jest')
 /** @type {import('jest').Config} */
 
 const createJestConfig = nextJest({
