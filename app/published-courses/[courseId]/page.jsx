@@ -1,5 +1,19 @@
 import { StudentTable } from "./_components/StudentTable";
 
+export async function generateStaticParams() {
+  const { courses } = await fetch('https://developers.teachable.com/v1/courses', {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      apiKey: process.env.API_KEY
+    }
+  }).then((res) => res.json())
+  return courses.map((course) => ({
+    slug: course.id,
+  }))
+}
+
+
 async function getCourseInfo(courseId){
   const fetchConfig = {
     method: "GET",
