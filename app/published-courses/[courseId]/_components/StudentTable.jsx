@@ -8,26 +8,10 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-async function getEnrollments(courseId) {
-  const fetchConfig = {
-    method: "POST",
-    headers: {
-      accept: "application/json",
-    },
-    body: JSON.stringify({ courseId: courseId }),
-  };
-  let response = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/enrollments`,
-    fetchConfig
-  );
-  let json = await response.json();
-  return json;
-}
 
-export default async function StudentTable({ params }) {
-  const slug = params;
 
-  let students = await getEnrollments(slug.courseId);
+export function StudentTable({students}) {
+
   return (
     <div className="max-h-[50vh] max-w-[50vh]">
       <Table>
